@@ -1,0 +1,208 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+
+<body>
+
+  <script>
+
+    /*
+  1) Programa una función que cuente el número de caracteres de una cadena de texto, pe. miFuncion("Hola Mundo") devolverá 10.
+  2) Programa una función que te devuelva el texto recortado según el número de caracteres indicados, pe. miFuncion("Hola Mundo", 4) devolverá "Hola".
+  3) Programa una función que dada una String te devuelva un Array de textos separados por cierto caracter, pe. miFuncion('hola que tal', ' ') devolverá ['hola', 'que', 'tal'].
+  4) Programa una función que repita un texto X veces, pe. miFuncion('Hola Mundo', 3) devolverá Hola Mundo Hola Mundo Hola Mundo.
+  
+  */
+
+
+    /* 
+    
+        function contarCaracteres(frase = "") {
+    
+          if (!frase) {
+            console.warn("no ingresaste ningun string");
+          } else {
+            console.info(`La cadena ${frase} tiene ${frase.length} caracteres`);
+    
+          }
+    
+        }*/
+
+    console.group("EJERCICIOS 1")
+
+    const contarCaracteres = (cadena = "") =>
+      (!cadena)
+        ? console.warn("no ingresaste ningun string")
+        : console.info(`La cadena ${cadena} tiene ${cadena.length} caracteres`);
+
+
+    contarCaracteres();
+    contarCaracteres("Hola Mundoo");
+
+
+
+
+
+    const recortarTexto = (cadena = "", longitud = undefined) =>
+      (!cadena)
+        ? console.warn("no ingresaste ningun string")
+        : (longitud === undefined)
+          ? console.warn("no ingresaste ninguna longitud")
+          : console.info(cadena.slice(0, longitud));
+
+    recortarTexto("hola mundo", 4)
+    recortarTexto();
+    recortarTexto("Hola Hola", 3);
+
+
+
+
+
+    const cadenaArray = (cadena = "", separador = undefined) =>
+      (!cadena)
+        ? console.warn("no ingresaste ningun string")
+        : (separador === undefined)
+          ? console.warn("no ingresaste el separador")
+          : console.info(cadena.split(separador))
+
+    cadenaArray("Hola Mundo", " ") //indica el separador del texto
+
+
+
+
+
+
+    const repetirTexto = (texto = "", repetir = undefined) => {
+      if (!texto) return console.warn("no ingresaste un texto");
+      if (repetir === undefined) return console.warn("no ingresaste la cantidad a repetir");
+      if (repetir <= 0, console.warn("ingrese un numero valido"));
+
+      for (let i = 1; i <= repetir; i++)
+        console.log(`${texto} ${i}`);
+    }
+
+
+    repetirTexto("Hola Mundo", 3);
+    repetirTexto("Hola Mundo", -3);
+    repetirTexto("Hola Mundo", 1);
+
+    console.groupEnd();
+
+
+
+    console.group("EJERCICIOS 2");
+
+    /*
+  5) Programa una función que invierta las palabras de una cadena de texto, pe.miFuncion("Hola Mundo") devolverá "odnuM aloH".
+  
+  6) Programa una función para contar el número de veces que se repite una palabra en un texto largo, pe.miFuncion("hola mundo adios mundo", "mundo") devolverá 2.
+  
+    7) Programa una función que valide si una palabra o frase dada, es un palíndromo(que se lee igual en un sentido que en otro), pe.mifuncion("Salas") devolverá true.
+    
+  8) Programa una función que elimine cierto patrón de caracteres de un texto dado, pe.miFuncion("xyz1, xyz2, xyz3, xyz4 y xyz5", "xyz") devolverá  "1, 2, 3, 4 y 5.
+    */
+
+    const invertirCadena = (cadena = "") =>
+      (!cadena)
+        ? console.warn("no ingresaste una cadena de texto")
+        : console.info(cadena.split("").reverse().join(""));
+
+    invertirCadena("hola mundo");
+
+
+
+    const contarPalabras = (cadena = "", texto = "") => {
+
+      if (!texto) return console.info("no ingresaste un texto");
+      if (!cadena) return console.info("no ingresaste una cadena")
+
+      let i = 0;
+      contador = 0;
+
+      while (i !== -1) {
+        i = cadena.indexOf(texto, i);
+
+        if (i !== -1) {
+          i++;
+          contador++;
+        }
+
+      }
+      console.info(`la palabra ${texto} se repite ${contador} veces`)
+
+    }
+    contarPalabras("hola mundo adios mundo mundo mundo", "mundo");
+
+
+    const palindromo = (palabra = "") => {
+
+      palabra = palabra.toLocaleLowerCase();
+      let alReves = palabra.split("").reverse().join("");
+      console.log(alReves);
+      if (palabra === alReves) {
+        console.info("es palindromo")
+      } else {
+        console.info("no es palindromo")
+      }
+    }
+
+    palindromo("neuquen");
+
+
+
+    const eliminarPatron = (texto = "", patron = "") =>
+      (!texto)
+        ? console.warn("no ingresaste ningun texto")
+        : (!patron)
+          ? console.warn("no ingresaste ningun patron")
+          : console.log(texto.replace(new RegExp(patron, "ig"), ""));
+
+    eliminarPatron();
+    eliminarPatron("ab1, ab2, ab3, ab4", "ab");
+
+    console.groupEnd();
+
+
+    console.group("EJERCICIO 3")
+
+
+    /*
+9) Programa una función que obtenga un numero aleatorio entre 501 y 600.
+10) Programa una función que reciba un número y evalúe si es capicúa o no (que se lee igual en un sentido que en otro), pe. miFuncion(2002) devolverá true.
+11) Programa una función que calcule el factorial de un número (El factorial de un entero positivo n, se define como el producto de todos los números enteros positivos desde 1 hasta n), pe. miFuncion(5) devolverá 120.
+*/
+
+    /* function getRandomInt(min, max) {
+         return Math.floor(Math.random() * (max - min)) + min;
+   
+       }
+   
+       console.log(getRandomInt(501, 600));
+   */
+    let array = new Uint32Array(5000);
+    window.crypto.getRandomValues(array);
+
+
+    const generarNumero = (min, max) => {
+      let i = 0;
+      while (!((array[i] % max >= min) && (array[i] % max <= max))) {
+        i++;
+        let numeroAleatorio = array[i];
+
+      }
+      console.log(array[i] % 600);
+    }
+
+    generarNumero(501, 600);
+
+  </script>
+
+</body>
+
+</html>

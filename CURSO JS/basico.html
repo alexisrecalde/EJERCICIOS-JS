@@ -1,0 +1,423 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=|, initial-scale=1.0">
+  <title>Document</title>
+</head>
+
+<body>
+  <h1>curso de JS</h1>
+
+
+  <script>
+
+
+    /*
+        //arreglos
+        const a = [];
+    
+        const b = [1, true, "hola", ["A", "B", "C"]];
+    
+        console.log(a);
+        console.log(b);
+        console.log(b.length);
+        console.log(b[2]);
+        console.log(b[3]);
+        console.log(b[3][2]);
+    
+    
+        const colores = ["rojo", "azul", "verde"];
+        console.log(colores);
+    
+        colores.forEach(function (el, index) {
+    
+          console.log(`<li id="${index}">${el}</li>`);
+    
+    
+    
+        });
+    
+    
+        //objetos clase 12
+    
+    
+        //dentro de un objeto a las variables se //le van a llamar atributos o //propiedades y a las funciones se les llama metodos 
+        
+    
+    
+        const alexis = {
+    
+          nombre: "Alexis",
+          apellido: "Recalde",
+          edad: 27,
+          pasatiempo: "jugar al lol",
+          estadoCivil: "soltero",
+          contacto: {
+            numero: 1125204701,
+            mail: "alexis.recalde@hotmail.com"
+          },
+          saludo: function () {
+            console.log("hola mundo")
+          },
+          HolaMeLLamo: function () {
+            console.log(`hola me llamo ${this.nombre} ${this.apellido} y tendo ${this.edad} años`)
+    
+          }
+        }
+    
+    
+        console.log(alexis.apellido);
+        console.log(alexis.contacto.mail);
+        console.log(alexis.pasatiempo);
+        console.log(alexis.saludo());
+        alexis.saludo();
+        alexis.HolaMeLLamo();
+    
+        console.log(Object.keys(alexis));
+        console.log(Object.values(alexis));
+        console.log(alexis.hasOwnProperty("nombre"));
+        console.log(alexis.hasOwnProperty("HolaMeLLamo"));
+    
+    
+        */
+
+
+    //tipos de operadores clase 13
+
+    //let modulo = 5 % 2;
+    //console.log(modulo);
+    //console.log(9 < 8);
+    //console.log(9 > 8);
+
+    //condicionales clase 14
+
+    let edad = 27;
+
+    if (edad > 17) {
+      console.log("eres mayor de edad ")
+    } else {
+      console.log("eres menor de edad")
+    }
+
+    let hora = 3;
+
+    if (hora >= 0 && hora <= 5) {
+      console.log("dejame dormir");
+    } else if (hora >= 6 && hora <= 11) {
+
+      console.log("buenos dias");
+    } else if (hora >= 12 && hora <= 18) {
+      console.log("buenas tardes")
+    } else {
+      console.log("buenas nohces")
+    }
+
+    let dia = 100;
+
+    switch (dia) {
+      case 0:
+        console.log("Domingo")
+        break;
+
+      case 1:
+        console.log("lunes")
+        break;
+
+      case 2:
+        console.log("martes")
+        break;
+
+      case 3:
+        console.log("miercoles")
+        break;
+
+      case 4:
+        console.log("jueves")
+        break;
+
+      default:
+        console.log("ingrese un dia valido")
+        break;
+    }
+
+
+
+    let contador = 3;
+
+    while (contador < 10) {
+      console.log(contador);
+      contador++;
+    }
+
+
+    const numeros = [1, 2, 3, 4, 5, 6, 7, 8, 9, 0];
+
+    for (let i = 0; i < numeros.length; i++) {
+
+      if (i === 3) {
+        break;
+      }
+      console.log(numeros[i])
+    }
+    for (let i = 0; i < numeros.length; i++) {
+
+      if (i === 3) {
+        continue;
+      }
+      console.log(numeros[i])
+    }
+
+
+
+    /*POO
+
+    Clase: Modelo a seguir
+    Objetos: Es una instancia de clase
+        Atributos: Es una caracteristica o propiedad del objeto(son variables dentro de un objeto)
+        Metodos: Son las acciones que un objeto puede realizar (son funciones dentro de un objeto)
+    */
+
+    const animal = {
+      nombre: "Leo",
+      genero: "macho",
+      ladrar() {
+        console.log("Guauu Guauu!!");
+      }
+    }
+
+    const animal2 = {
+      nombre: "Felipe",
+      genero: "macho",
+      ladrar() {
+        console.log("Guauu Guauu!!")
+      }
+    }
+
+    console.log(animal, animal2);
+
+    //funcion constructora
+    function Animal(nombre, genero) {
+      //atributos
+      this.nombre = nombre;
+      this.genero = genero;
+
+    }
+    //metodos agregados al prototipo animal de la funcion constructora
+    Animal.prototype.sonar = function () {
+      console.log("hago ruido")
+
+    }
+
+    Animal.prototype.saludar = function () {
+      console.log(`Hola me llamo ${this.nombre}`);
+    }
+
+    //Herencia prototipica
+    function Perro(nombre, genero, tamaño) {
+      this.super = Animal;
+      this.super(nombre, genero); //super manda a llamar al constructor padre
+      this.tamaño = tamaño;
+
+    }
+
+    //perro esta heredando de Animal
+    Perro.prototype = new Animal();
+    Perro.prototype.constructor = Perro;
+
+    //saobreescritura de metodos del prototipo padre en el hijo
+
+    Perro.prototype.sonar = function () {
+
+      console.log("Soy un perro");
+
+    }
+
+    Perro.prototype.ladrar = function () {
+
+      console.log("Guauu Guauu!!")
+
+    }
+
+    const Leo = new Perro("Leo", "Macho", "Chico"),
+      Felipe = new Animal("Felipe", "Macho");
+
+    console.log(Leo, Felipe);
+
+    Leo.sonar();
+    Felipe.saludar();
+    Leo.saludar();
+    Leo.ladrar();
+
+    class animal3 {
+      //el constructor es un metodo especial que se ejecuta en el momento de unstanciar la clase
+
+      //atributos
+      constructor(nombre, genero) {
+        this.nombre = nombre;
+        this.genero = genero;
+      }
+
+      //metodos
+      sonar() {
+        console.log("hago ruido porque estoy vivo");
+      }
+
+      saludar() {
+        console.log(`Hola me llamo ${this.nombre} y soy un ${this.genero}`);
+      }
+    }
+
+    class Mascotas extends Animal {
+      constructor(nombre, genero, tamaño) {
+
+        //con el metodo super se manda a llamar al constructor de la clase padre
+        super(nombre, genero);
+        this.tamaño = tamaño;
+        this.raza = null;
+      }
+
+      sonar() {
+        console.log("soy un perro y mi sonido es un ladrido");
+      }
+
+      ladrar() {
+        console.log("guauu guauu!!");
+      }
+
+      //los setters y getters son metodos especiales que nos permiten establecer y obtener valores de atributos de nuestra clase
+
+      get getRaza() {
+        return this.raza;
+      }
+
+      set setRaza(raza) {
+        this.raza = raza;
+      }
+    }
+
+
+    const Tommy = new animal3("Tommy", "Macho");
+    Lola = new Mascotas("Lola", "Hembra", "Mediano");
+
+    console.log(Tommy);
+    console.log(Lola)
+
+    Tommy.saludar();
+    Lola.sonar();
+    Lola.ladrar();
+    console.log(Lola.getRaza);
+    Lola.setRaza = "Ovejero Belga";
+    console.log(Lola.getRaza);
+
+    console.clear();
+
+    console.group("DATE Y MATH");
+    console.log(Date());
+    let fecha = new Date();
+    console.log(fecha);
+    //dia
+    console.log(fecha.getDate());
+    //mes
+    console.log(fecha.getMonth() + 1);
+    //año
+    console.log(fecha.getFullYear());
+    //hora
+    console.log(fecha.getHours(), fecha.getMinutes());
+    console.log(fecha.toDateString());
+    console.log(fecha.toLocaleString());
+
+
+
+
+    console.groupEnd();
+
+    console.group("alert, confirm y prompt");
+    //window.alert("esto es una alerta");
+    //window.confirm("eso es una confirmacion")
+    //window.prompt("Hola esto permite al usuario ingresar un valor");
+
+    //let = alerta = alert("esto es una alerta");
+    //confirmar = confirm("eso es una confirmacion")
+    //aviso = prompt("Hola esto permite al usuario ingresar un valor");
+
+    //console.log(alerta);
+    //console.log(confirmar);
+    //console.log(aviso);
+
+    console.groupEnd();
+
+
+
+    console.group("FUNCIONES ANONIMAS AUTOEJECUTABLES");
+
+    (function () {
+      console.log("esto es una funcion autoejecutable");
+
+    })();
+
+    (function (d, w, c) {
+      console.log("esto tambien es una funcion autoejecutable");
+      console.log(d);
+      console.log(c);
+    })(document, window, console);
+
+    console.groupEnd();
+
+
+
+    console.group("alert, confirm y prompt");
+
+
+
+
+
+
+    console.groupEnd();
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  </script>
+
+
+</html>
